@@ -258,21 +258,28 @@ export const logger = {
     const GRAY = chalk.gray;
     const WHITE = chalk.white;
 
+    const title = "universal-pm";
+    const subtitle = "Professional Package Manager CLI";
+    const version = "v0.0.1";
+    const width = 70;
+    const centerTitle = " ".repeat(Math.floor((width - title.length) / 2)) + title;
+    const centerSubtitle = " ".repeat(Math.floor((width - subtitle.length) / 2)) + subtitle;
+
     console.log("");
-    console.log(`  ${GRAY("╔" + "═".repeat(70) + "╗")}`);
-    console.log(`  ${GRAY("║")}                                                                      ${GRAY("║")}`);
+    console.log(`  ${GRAY("╔" + "═".repeat(width) + "╗")}`);
+    console.log(`  ${GRAY("║" + " ".repeat(width) + "║")}`);
     console.log(`  ${GRAY("║")}${CYAN("        ██╗   ██╗ ███╗   ██╗ ██╗         ██████╗  ███╗   ███╗         ")}${GRAY("║")}`);
     console.log(`  ${GRAY("║")}${CYAN("        ██║   ██║ ████╗  ██║ ██║         ██╔══██╗ ████╗ ████║         ")}${GRAY("║")}`);
     console.log(`  ${GRAY("║")}${CYAN("        ██║   ██║ ██╔██╗ ██║ ██║ ██████╗ ██████╔╝ ██╔████╔██║         ")}${GRAY("║")}`);
     console.log(`  ${GRAY("║")}${CYAN("        ██║   ██║ ██║╚██╗██║ ██║ ╚═════╝ ██╔═══╝  ██║╚██╔╝██║         ")}${GRAY("║")}`);
     console.log(`  ${GRAY("║")}${CYAN("        ╚██████╔╝ ██║ ╚████║ ██║         ██║      ██║ ╚═╝ ██║         ")}${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}${CYAN("         ╚═════╝  ╚═╝  ╚═══╝ ╚═╝         ╚═╝      ╚═╝     ╚═╝  v0.0.1 ")}${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}                                                                      ${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}                            ${WHITE("universal-pm")}                            ${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}                                                                      ${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}                  ${WHITE("Professional Package Manager CLI")}                  ${GRAY("║")}`);
-    console.log(`  ${GRAY("║")}                                                                      ${GRAY("║")}`);
-    console.log(`  ${GRAY("╚" + "═".repeat(70) + "╝")}`);
+    console.log(`  ${GRAY("║")}${CYAN("         ╚═════╝  ╚═╝  ╚═══╝ ╚═╝         ╚═╝      ╚═╝     ╚═╝  " + version + " ")}${GRAY("║")}`);
+    console.log(`  ${GRAY("║" + " ".repeat(width) + "║")}`);
+    console.log(`  ${GRAY("║")}${WHITE(centerTitle)}${" ".repeat(width - centerTitle.length)}${GRAY("║")}`);
+    console.log(`  ${GRAY("║" + " ".repeat(width) + "║")}`);
+    console.log(`  ${GRAY("║")}${WHITE(centerSubtitle)}${" ".repeat(width - centerSubtitle.length)}${GRAY("║")}`);
+    console.log(`  ${GRAY("║" + " ".repeat(width) + "║")}`);
+    console.log(`  ${GRAY("╚" + "═".repeat(width) + "╝")}`);
     console.log("");
   },
 

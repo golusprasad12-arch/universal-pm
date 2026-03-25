@@ -125,9 +125,9 @@ pm help              # Show all commands
 ║        ╚██████╔╝ ██║ ╚████║ ██║         ██║      ██║ ╚═╝ ██║         ║
 ║         ╚═════╝  ╚═╝  ╚═══╝ ╚═╝         ╚═╝      ╚═╝     ╚═╝  v0.0.1 ║
 ║                                                                      ║
-║                             universal-pm                             ║
+║                           universal-pm                               ║
 ║                                                                      ║
-║                   Professional Package Manager CLI                   ║
+║                Professional Package Manager CLI                       ║
 ║                                                                      ║
 ╚══════════════════════════════════════════════════════════════════════╝
 
