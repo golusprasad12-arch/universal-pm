@@ -1,6 +1,6 @@
 {
   "name": "pm-cli",
-  "version": "4.0.0",
+  "version": "0.0.1",
   "description": "Professional Package Manager CLI for npm, pnpm, and bun",
   "type": "module",
   "bin": {
