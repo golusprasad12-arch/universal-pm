@@ -13,7 +13,7 @@
 
 ---
 
-## ⚠️ Important Disclaimer
+## Important Disclaimer
 
 **This project is 100% AI-generated code.**
 
@@ -26,7 +26,7 @@ If you find any bugs, issues, or have suggestions:
 
 ---
 
-## ✨ Features
+## Features
 
 - **Unified Management** - Control npm, pnpm, and bun from one CLI
 - **Beautiful UI** - Colorful, organized output with tables and badges
@@ -39,7 +39,7 @@ If you find any bugs, issues, or have suggestions:
 
 ---
 
-## 📦 Installation
+## Installation
 
 ### Quick Start
 
@@ -68,7 +68,7 @@ After building, use:
 
 ---
 
-## 🚀 Usage
+## Usage
 
 ### Basic Commands
 
@@ -84,36 +84,36 @@ pm update            # Update all packages
 
 ```bash
 pm search <query>           # Search npm registry
-pm info <pkg>               # Get package details
-pm github <query>           # Search GitHub repos
+pm info <pkg>              # Get package details
+pm github <query>          # Search GitHub repos
 pm available <pkg>         # Check if package exists in npm/pnpm/bun
-pm compare <pkg1> <pkg2>    # Compare two packages
+pm compare <pkg1> <pkg2>   # Compare two packages
 ```
 
 ### Package Management
 
 ```bash
-pm outdated           # Show outdated packages
-pm major             # Update major versions only
-pm downgrade <pkg>@v # Install specific version
-pm clean             # Clean cache
-pm audit             # Security audit
+pm outdated            # Show outdated packages
+pm major              # Update major versions only
+pm downgrade <pkg>@v   # Install specific version
+pm clean              # Clean cache
+pm audit              # Security audit
 ```
 
 ### Utilities
 
 ```bash
-pm stats             # Package statistics
-pm which <pkg>      # Find package location
-pm size             # Disk usage
-pm backup           # Backup package list
-pm doctor           # System health check
-pm help             # Show all commands
+pm stats              # Package statistics
+pm which <pkg>       # Find package location
+pm size              # Disk usage
+pm backup            # Backup package list
+pm doctor            # System health check
+pm help              # Show all commands
 ```
 
 ---
 
-## 🎨 Example Output
+## Example Output
 
 ```
 ╔══════════════════════════════════════════════════════════════════════╗
@@ -145,7 +145,7 @@ pm help             # Show all commands
 
 ---
 
-## 📋 Available Commands
+## Available Commands
 
 | Category | Commands |
 |----------|----------|
@@ -160,7 +160,7 @@ pm help             # Show all commands
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Themes are available:
 ```bash
@@ -171,7 +171,7 @@ pm --red      # Red theme
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Since this is an AI-generated project for learning purposes:
 
@@ -182,13 +182,13 @@ Since this is an AI-generated project for learning purposes:
 
 ---
 
-## 📝 License
+## License
 
 MIT License - Feel free to use, modify, and distribute!
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Built with [Bun](https://bun.sh) - Fast JavaScript runtime
 - Colorful CLI using [Chalk](https://github.com/chalk/chalk)
@@ -197,7 +197,7 @@ MIT License - Feel free to use, modify, and distribute!
 
 ---
 
-## 📱 Requirements
+## Requirements
 
 - [Bun](https://bun.sh) (recommended) or Node.js
 - Windows, macOS, or Linux
@@ -206,5 +206,5 @@ MIT License - Feel free to use, modify, and distribute!
 ---
 
 <p align="center">
-  Made with ❤️ (and a lot of AI help!)
+  Made with love (and a lot of AI help!)
 </p>
