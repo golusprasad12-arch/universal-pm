@@ -1,7 +1,7 @@
 {
-  "name": "pm-cli",
+  "name": "universal-pm",
   "version": "0.0.1",
-  "description": "Professional Package Manager CLI for npm, pnpm, and bun",
+  "description": "Professional Package Manager CLI for npm, pnpm, and bun - Unified CLI for all package managers",
   "type": "module",
   "bin": {
     "pm": "./src/index.ts"

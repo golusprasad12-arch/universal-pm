@@ -1,7 +1,7 @@
-# pm-cli - Professional Package Manager CLI
+# universal-pm - Professional Package Manager CLI
 
 <p align="center">
-  <img src="https://img.shields.io/badge/version-4.0.0-blue" alt="Version">
+  <img src="https://img.shields.io/badge/version-0.0.1-blue" alt="Version">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
   <img src="https://img.shields.io/badge/platform-Windows-lightgrey" alt="Platform">
   <img src="https://img.shields.io/badge/runtime-Bun%20%7C%20Node.js-yellow" alt="Runtime">
@@ -45,8 +45,8 @@ If you find any bugs, issues, or have suggestions:
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/pm-cli.git
-cd pm-cli
+git clone https://github.com/golusprasad12-arch/universal-pm.git
+cd universal-pm
 
 # Install dependencies
 bun install
