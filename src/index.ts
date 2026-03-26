@@ -27,7 +27,7 @@ const backupFile = 'packages-backup.json';
 
 let cache: Package[] = [];
 let cacheTime = 0;
-const TTL = 60000; // 1 minute cache
+const TTL = 30000; // 30s cache for package list (reduced for freshness)
 
 async function pkgs(force = false): Promise<Package[]> {
   const now = Date.now();
@@ -38,6 +38,11 @@ async function pkgs(force = false): Promise<Package[]> {
 }
 
 function clear() { cache = []; cacheTime = 0; }
+
+// Fast package list without cache (for install/uninstall feedback)
+function pkgsSync(): Package[] {
+  return pm.listAll();
+}
 
 // ═══════════════════════════════════════════════════════════════════════
 // MAIN HELP - Beautiful and complete
@@ -1036,20 +1041,24 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
   },
 
   info: async (args) => {
-    if (!args[0]) { logger.errorHelp('Usage: pm info <package>'); return; }
+    if (!args[0]) { logger.errorHelp('Usage: universal-pm info <package>'); return; }
     const pkg = args[0];
-    
+
     logger.logo('info');
     const stopSpinner = logger.spinner('Fetching info for "' + pkg + '"...');
-    
-    const safeNpmView = (field: string): string => {
+
+    const safeNpmView = (field: string, timeout = 3000): string => {
       try {
-        return execSync(`npm view ${pkg} ${field}`, { encoding: 'utf8', stdio: 'pipe' }).trim() || 'N/A';
+        return execSync(`npm view ${pkg} ${field}`, { 
+          encoding: 'utf8', 
+          stdio: 'pipe',
+          timeout 
+        }).trim() || 'N/A';
       } catch {
         return 'N/A';
       }
     };
-    
+
     try {
       const ver = safeNpmView('version');
       if (ver === 'N/A') {
@@ -1057,7 +1066,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
         logger.empty('Package "' + pkg + '" not found in npm registry');
         return;
       }
-      
+
       const license = safeNpmView('license');
       const desc = safeNpmView('description');
       const homepage = safeNpmView('homepage');
@@ -1106,14 +1115,26 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
     sep();
   },
 
-    find: async (args) => {
-      logger.logo('find');
-      if (!args[0]) { logger.errorHelp('Usage: pm find <name>'); return; }
-      const allPkgs = await pkgs();
-      const f = allPkgs.filter(p => p.name.toLowerCase().includes(args[0].toLowerCase()));
-      if (f.length) logger.table(['Package','Version','Manager'], f.map(p => [p.name,p.version,'['+p.manager+']']));
-      else logEmpty('No packages match "' + args[0] + '"', 'Try a different search term');
-    },
+  find: async (args) => {
+    logger.logo('find');
+    if (!args[0]) { logger.errorHelp('Usage: universal-pm find <name>'); return; }
+    const allPkgs = await pkgs();
+    const searchTerm = args[0].toLowerCase();
+    const f = allPkgs.filter(p => p.name.toLowerCase().includes(searchTerm));
+    
+    if (f.length === 0) {
+      logEmpty('No packages match "' + args[0] + '"', 'Try a different search term');
+      return;
+    }
+    
+    // Limit results to first 20 for faster display
+    const display = f.slice(0, 20);
+    if (f.length > 20) {
+      logger.info(`Showing ${display.length} of ${f.length} results`);
+    }
+    
+    logger.table(['Package','Version','Manager'], display.map(p => [p.name,p.version,'['+p.manager+']']));
+  },
 
   backup: async () => {
     logger.logo('backup');
@@ -1211,17 +1232,29 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
     } catch {}
   },
 
-  license: async (args) => { if(args[0]) logger.kv(args[0], (execSync(`npm view ${args[0]} license`,{encoding:'utf8'}).trim() || 'Unknown')); },
+  license: async (args) => { 
+    if(!args[0]) return;
+    try {
+      const license = execSync(`npm view ${args[0]} license`,{encoding:'utf8', timeout: 5000}).trim() || 'Unknown';
+      logger.kv(args[0], license);
+    } catch {}
+  },
 
   downloads: async (args) => {
     if (!args[0]) return;
     try {
-      const d = JSON.parse(execSync(`curl -s "https://api.npmjs.org/downloads/point/last-month/${args[0]}"`,{encoding:'utf8'}));
+      const d = JSON.parse(execSync(`curl -s "https://api.npmjs.org/downloads/point/last-month/${args[0]}"`,{encoding:'utf8', timeout: 5000}));
       logger.kv(args[0], (d.downloads||0).toLocaleString() + ' downloads (30 days)');
     } catch {}
   },
 
-  deps: async (args) => { if(args[0]) console.log(execSync(`npm view ${args[0]} dependencies`,{encoding:'utf8'}).trim() || 'None'); },
+  deps: async (args) => { 
+    if(!args[0]) return;
+    try {
+      const deps = execSync(`npm view ${args[0]} dependencies`,{encoding:'utf8', timeout: 5000}).trim() || 'None';
+      console.log(deps);
+    } catch {}
+  },
 
   home: async (args) => { if(args[0]) { const h = execSync(`npm view ${args[0]} homepage`,{encoding:'utf8'}).trim(); if(h) execSync(`start "${h}"`); } },
 
@@ -1315,12 +1348,22 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
   },
 
   tree: async (args) => {
+    logger.logo('tree');
     if (args[0]) {
-      logger.logo('tree');
-      console.log(execSync(`npm view ${args[0]} dependencies`, {encoding:'utf8', stdio:'inherit'}));
+      try {
+        const deps = execSync(`npm view ${args[0]} dependencies`, {encoding:'utf8', timeout: 5000, stdio:'pipe'});
+        console.log(deps?.trim() || 'No dependencies');
+      } catch {
+        logger.info('Package not found or no dependencies');
+      }
     } else {
-      execSync('npm list -g --depth=2',{stdio:'inherit'});
+      try {
+        execSync('npm list -g --depth=1',{stdio:'inherit', timeout: 10000});
+      } catch {
+        logger.info('No global packages or npm not available');
+      }
     }
+    sep();
   },
 
   // Reverse Dependencies
