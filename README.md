@@ -62,7 +62,7 @@ bun run build
 
 After building, use:
 ```bash
-./pm.exe --help    # Windows
+./universal-pm.exe --help    # Windows
 universal-pm --help # After npm install
 ```
 
@@ -166,9 +166,9 @@ universal-pm help              # Show all commands
 
 Themes are available:
 ```bash
-pm --dark     # Dark theme (default)
-pm --light    # Light theme
-pm --red      # Red theme
+universal-pm --dark     # Dark theme (default)
+universal-pm --light    # Light theme
+universal-pm --red      # Red theme
 ```
 
 ---

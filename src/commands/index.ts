@@ -48,8 +48,8 @@ class HelpCommand {
           logger.commandHelp(
             'list',
             'List all globally installed packages from npm, pnpm, and bun.',
-            'pm list [npm|pnpm|bun]',
-            ['pm list              - List all packages', 'pm list npm          - List only npm packages', 'pm list bun           - List only bun packages'],
+            'universal-pm list [npm|pnpm|bun]',
+            ['universal-pm list              - List all packages', 'universal-pm list npm          - List only npm packages', 'universal-pm list bun           - List only bun packages'],
             ['ls', 'l']
           );
         },
@@ -57,7 +57,7 @@ class HelpCommand {
           logger.commandHelp(
             'check',
             'Check for available updates for all installed packages. Shows current version vs latest version.',
-            'pm check',
+            'universal-pm check',
             ['universal-pm check             - Check all packages', 'universal-pm update            - Same as check'],
             ['update', 'upgrade', 'up', 'outdated']
           );
@@ -66,8 +66,8 @@ class HelpCommand {
           logger.commandHelp(
             'install',
             'Install a package globally. You can specify a version using @version syntax.',
-            'pm install <package>[@version]',
-            ['pm install typescript           - Install latest', 'pm install typescript@5.0.0  - Install specific version', 'pm install https://github.com/user/repo - Install from GitHub'],
+            'universal-pm install <package>[@version]',
+            ['universal-pm install typescript           - Install latest', 'universal-pm install typescript@5.0.0  - Install specific version', 'universal-pm install https://github.com/user/repo - Install from GitHub'],
             ['i', 'add']
           );
         },
@@ -75,8 +75,8 @@ class HelpCommand {
           logger.commandHelp(
             'uninstall',
             'Remove a globally installed package.',
-            'pm uninstall <package>',
-            ['pm uninstall typescript        - Remove package', 'pm remove typescript           - Same as uninstall'],
+            'universal-pm uninstall <package>',
+            ['universal-pm uninstall typescript        - Remove package', 'universal-pm remove typescript           - Same as uninstall'],
             ['remove', 'rm']
           );
         },
@@ -84,8 +84,8 @@ class HelpCommand {
           logger.commandHelp(
             'search',
             'Search the npm registry for packages matching the query.',
-            'pm search <query>',
-            ['pm search react              - Search for react', 'pm search typescript        - Search for typescript'],
+            'universal-pm search <query>',
+            ['universal-pm search react              - Search for react', 'universal-pm search typescript        - Search for typescript'],
             ['s', 'query']
           );
         },
@@ -93,8 +93,8 @@ class HelpCommand {
           logger.commandHelp(
             'info',
             'Show detailed information about a package including version, license, description, and install commands.',
-            'pm info <package>',
-            ['pm info openclaw            - Show openclaw info', 'pm view openclaw           - Same as info'],
+            'universal-pm info <package>',
+            ['universal-pm info openclaw            - Show openclaw info', 'universal-pm view openclaw           - Same as info'],
             ['view', 'show', 'inspect']
           );
         },
@@ -102,8 +102,8 @@ class HelpCommand {
           logger.commandHelp(
             'deps',
             'Show all dependencies of a package.',
-            'pm deps <package>',
-            ['pm deps react               - Show react dependencies'],
+            'universal-pm deps <package>',
+            ['universal-pm deps react               - Show react dependencies'],
             ['dependencies', 'depends']
           );
         },
@@ -111,8 +111,8 @@ class HelpCommand {
           logger.commandHelp(
             'downloads',
             'Show number of downloads for a package in the last 30 days.',
-            'pm downloads <package>',
-            ['pm downloads openclaw       - Show download stats'],
+            'universal-pm downloads <package>',
+            ['universal-pm downloads openclaw       - Show download stats'],
             ['download', 'downloads']
           );
         },
@@ -120,8 +120,8 @@ class HelpCommand {
           logger.commandHelp(
             'license',
             'Show the license of a package.',
-            'pm license <package>',
-            ['pm license openclaw        - Show license (e.g., MIT)'],
+            'universal-pm license <package>',
+            ['universal-pm license openclaw        - Show license (e.g., MIT)'],
             ['licence']
           );
         },
@@ -129,8 +129,8 @@ class HelpCommand {
           logger.commandHelp(
             'version',
             'Show version information for Node.js, npm, pnpm, bun, and git.',
-            'pm version',
-            ['pm version                - Show all versions', 'pm v                   - Short form'],
+            'universal-pm version',
+            ['universal-pm version                - Show all versions', 'universal-pm v                   - Short form'],
             ['v', 'ver', 'versions']
           );
         },
@@ -138,8 +138,8 @@ class HelpCommand {
           logger.commandHelp(
             'stats',
             'Show statistics about installed packages - total count, breakdown by manager.',
-            'pm stats',
-            ['pm stats                   - Show package statistics'],
+            'universal-pm stats',
+            ['universal-pm stats                   - Show package statistics'],
             ['stat', 'statistics']
           );
         },
@@ -147,8 +147,8 @@ class HelpCommand {
           logger.commandHelp(
             'doctor',
             'Check system health - verifies Node.js, npm, pnpm, and bun are installed and working.',
-            'pm doctor',
-            ['pm doctor                 - Run health check', 'pm health                 - Same as doctor'],
+            'universal-pm doctor',
+            ['universal-pm doctor                 - Run health check', 'universal-pm health                 - Same as doctor'],
             ['health', 'diag', 'diagnose']
           );
         },
@@ -156,8 +156,8 @@ class HelpCommand {
           logger.commandHelp(
             'audit',
             'Run npm audit to check for security vulnerabilities in installed packages.',
-            'pm audit',
-            ['pm audit                  - Check for vulnerabilities', 'pm security               - Same as audit'],
+            'universal-pm audit',
+            ['universal-pm audit                  - Check for vulnerabilities', 'universal-pm security               - Same as audit'],
             ['security', 'vuln', 'vulnerability']
           );
         },
@@ -165,8 +165,8 @@ class HelpCommand {
           logger.commandHelp(
             'clean',
             'Clean the cache for npm and bun to free up disk space.',
-            'pm clean',
-            ['pm clean                  - Clear npm and bun cache', 'pm cache                  - Same as clean'],
+            'universal-pm clean',
+            ['universal-pm clean                  - Clear npm and bun cache', 'universal-pm cache                  - Same as clean'],
             ['clear', 'cache']
           );
         },
@@ -174,8 +174,8 @@ class HelpCommand {
           logger.commandHelp(
             'backup',
             'Create a backup of your installed packages list to packages-backup.json.',
-            'pm backup',
-            ['pm backup                 - Save package list'],
+            'universal-pm backup',
+            ['universal-pm backup                 - Save package list'],
             ['save', 'dump']
           );
         },
@@ -183,8 +183,8 @@ class HelpCommand {
           logger.commandHelp(
             'restore',
             'Show information about a previous backup.',
-            'pm restore',
-            ['pm restore                - Show backup info'],
+            'universal-pm restore',
+            ['universal-pm restore                - Show backup info'],
             []
           );
         },
@@ -192,8 +192,8 @@ class HelpCommand {
           logger.commandHelp(
             'export',
             'Export installed packages to JSON or CSV file.',
-            'pm export [json|csv]',
-            ['pm export                 - Export to JSON', 'pm export csv              - Export to CSV'],
+            'universal-pm export [json|csv]',
+            ['universal-pm export                 - Export to JSON', 'universal-pm export csv              - Export to CSV'],
             ['save', 'dump']
           );
         },
@@ -201,8 +201,8 @@ class HelpCommand {
           logger.commandHelp(
             'json',
             'Output all installed packages as JSON. Useful for scripting.',
-            'pm json',
-            ['pm json                   - Output as JSON', 'pm json > packages.json    - Save to file'],
+            'universal-pm json',
+            ['universal-pm json                   - Output as JSON', 'universal-pm json > packages.json    - Save to file'],
             []
           );
         },
@@ -210,8 +210,8 @@ class HelpCommand {
           logger.commandHelp(
             'which',
             'Show the installation path of a package.',
-            'pm which <package>',
-            ['pm which openclaw         - Show install path'],
+            'universal-pm which <package>',
+            ['universal-pm which openclaw         - Show install path'],
             ['where', 'path']
           );
         },
@@ -219,8 +219,8 @@ class HelpCommand {
           logger.commandHelp(
             'size',
             'Show disk space used by each installed package.',
-            'pm size',
-            ['pm size                   - Show package sizes'],
+            'universal-pm size',
+            ['universal-pm size                   - Show package sizes'],
             []
           );
         },
@@ -228,8 +228,8 @@ class HelpCommand {
           logger.commandHelp(
             'age',
             'Show when each package was last installed.',
-            'pm age',
-            ['pm age                    - Show install dates'],
+            'universal-pm age',
+            ['universal-pm age                    - Show install dates'],
             []
           );
         },
@@ -237,8 +237,8 @@ class HelpCommand {
           logger.commandHelp(
             'tree',
             'Show dependency tree for a package or all packages.',
-            'pm tree [package]',
-            ['pm tree                   - Show global deps', 'pm tree react            - Show react deps'],
+            'universal-pm tree [package]',
+            ['universal-pm tree                   - Show global deps', 'universal-pm tree react            - Show react deps'],
             []
           );
         },
@@ -246,8 +246,8 @@ class HelpCommand {
           logger.commandHelp(
             'duplicates',
             'Find packages that are installed in multiple package managers.',
-            'pm duplicates',
-            ['pm duplicates             - Find duplicate installs', 'pm dups                   - Short form'],
+            'universal-pm duplicates',
+            ['universal-pm duplicates             - Find duplicate installs', 'universal-pm dups                   - Short form'],
             ['dup', 'dups']
           );
         },
@@ -255,8 +255,8 @@ class HelpCommand {
           logger.commandHelp(
             'find',
             'Search for installed packages by name.',
-            'pm find <name>',
-            ['pm find open              - Find packages with "open"'],
+            'universal-pm find <name>',
+            ['universal-pm find open              - Find packages with "open"'],
             ['search', 's']
           );
         },
@@ -264,8 +264,8 @@ class HelpCommand {
           logger.commandHelp(
             'outdated',
             'Show only packages that have newer versions available.',
-            'pm outdated',
-            ['pm outdated              - Show outdated packages'],
+            'universal-pm outdated',
+            ['universal-pm outdated              - Show outdated packages'],
             ['out']
           );
         },
@@ -273,8 +273,8 @@ class HelpCommand {
           logger.commandHelp(
             'dry-run',
             'Preview what would be updated without actually updating.',
-            'pm dry-run',
-            ['pm dry-run               - Preview updates', 'pm preview                - Same as dry-run'],
+            'universal-pm dry-run',
+            ['universal-pm dry-run               - Preview updates', 'universal-pm preview                - Same as dry-run'],
             ['preview', 'simulate']
           );
         },
@@ -282,8 +282,8 @@ class HelpCommand {
           logger.commandHelp(
             'major',
             'Check for major version updates only (e.g., 1.x to 2.x).',
-            'pm major',
-            ['pm major                  - Show major updates'],
+            'universal-pm major',
+            ['universal-pm major                  - Show major updates'],
             []
           );
         },
@@ -291,8 +291,8 @@ class HelpCommand {
           logger.commandHelp(
             'star',
             'Mark a package as favorite for quick access.',
-            'pm star <package>',
-            ['pm star openclaw          - Mark as favorite', 'pm fav                     - Short form'],
+            'universal-pm star <package>',
+            ['universal-pm star openclaw          - Mark as favorite', 'universal-pm fav                     - Short form'],
             ['fav', 'bookmark']
           );
         },
@@ -300,8 +300,8 @@ class HelpCommand {
           logger.commandHelp(
             'favorites',
             'List all packages you have marked as favorites.',
-            'pm favorites',
-            ['pm favorites              - Show favorites', 'pm favs                    - Short form'],
+            'universal-pm favorites',
+            ['universal-pm favorites              - Show favorites', 'universal-pm favs                    - Short form'],
             ['favs', 'starred']
           );
         },
@@ -309,8 +309,8 @@ class HelpCommand {
           logger.commandHelp(
             'alias',
             'Create short aliases for package names or commands.',
-            'pm alias <name>=<package> or pm alias list',
-            ['pm alias list            - Show all aliases', 'pm alias o=openclaw       - Create alias'],
+            'universal-pm alias <name>=<package> or pm alias list',
+            ['universal-pm alias list            - Show all aliases', 'universal-pm alias o=openclaw       - Create alias'],
             ['aliases', 'nickname']
           );
         },
@@ -318,8 +318,8 @@ class HelpCommand {
           logger.commandHelp(
             'compare',
             'Compare two packages - version, downloads, description.',
-            'pm compare <package1> <package2>',
-            ['pm compare react vue         - Compare react vs vue', 'pm cmp express koa           - Compare express vs koa'],
+            'universal-pm compare <package1> <package2>',
+            ['universal-pm compare react vue         - Compare react vs vue', 'universal-pm cmp express koa           - Compare express vs koa'],
             ['cmp', 'diff']
           );
         },
@@ -327,8 +327,8 @@ class HelpCommand {
           logger.commandHelp(
             'home',
             'Open the package homepage in your default browser.',
-            'pm home <package>',
-            ['pm home openclaw          - Open homepage', 'pm homepage openclaw       - Same as home'],
+            'universal-pm home <package>',
+            ['universal-pm home openclaw          - Open homepage', 'universal-pm homepage openclaw       - Same as home'],
             ['homepage', 'website']
           );
         },
@@ -336,8 +336,8 @@ class HelpCommand {
           logger.commandHelp(
             'bugs',
             'Open the package bug report page in your browser.',
-            'pm bugs <package>',
-            ['pm bugs openclaw          - Open issues page', 'pm issues openclaw        - Same as bugs'],
+            'universal-pm bugs <package>',
+            ['universal-pm bugs openclaw          - Open issues page', 'universal-pm issues openclaw        - Same as bugs'],
             ['issues', 'issue']
           );
         },
@@ -345,8 +345,8 @@ class HelpCommand {
           logger.commandHelp(
             'repo',
             'Open the package source repository in your browser.',
-            'pm repo <package>',
-            ['pm repo openclaw          - Open GitHub repo', 'pm source openclaw         - Same as repo'],
+            'universal-pm repo <package>',
+            ['universal-pm repo openclaw          - Open GitHub repo', 'universal-pm source openclaw         - Same as repo'],
             ['repository', 'source']
           );
         },
@@ -354,8 +354,8 @@ class HelpCommand {
           logger.commandHelp(
             'changelog',
             'Show information about where to find the package changelog.',
-            'pm changelog <package>',
-            ['pm changelog openclaw     - Get changelog URL'],
+            'universal-pm changelog <package>',
+            ['universal-pm changelog openclaw     - Get changelog URL'],
             ['changes', 'history']
           );
         },
@@ -363,8 +363,8 @@ class HelpCommand {
           logger.commandHelp(
             'reverse',
             'Show packages that depend on the specified package.',
-            'pm reverse <package>',
-            ['pm reverse react          - Show packages using react'],
+            'universal-pm reverse <package>',
+            ['universal-pm reverse react          - Show packages using react'],
             ['dependents', 'rev']
           );
         },
@@ -372,8 +372,8 @@ class HelpCommand {
           logger.commandHelp(
             'recent',
             'Show packages that were recently updated in the registry.',
-            'pm recent',
-            ['pm recent                 - Show recently updated'],
+            'universal-pm recent',
+            ['universal-pm recent                 - Show recently updated'],
             []
           );
         },
@@ -381,8 +381,8 @@ class HelpCommand {
           logger.commandHelp(
             'popular',
             'Show your installed packages sorted by download count.',
-            'pm popular',
-            ['pm popular                - Show by popularity'],
+            'universal-pm popular',
+            ['universal-pm popular                - Show by popularity'],
             []
           );
         },
@@ -390,8 +390,8 @@ class HelpCommand {
           logger.commandHelp(
             'run',
             'Run a global CLI command directly.',
-            'pm run <command>',
-            ['pm run typescript --version  - Run typescript CLI'],
+            'universal-pm run <command>',
+            ['universal-pm run typescript --version  - Run typescript CLI'],
             ['exec', 'execute']
           );
         },
@@ -399,8 +399,8 @@ class HelpCommand {
           logger.commandHelp(
             'prune',
             'Remove unnecessary packages from node_modules.',
-            'pm prune',
-            ['pm prune                  - Clean up unused deps'],
+            'universal-pm prune',
+            ['universal-pm prune                  - Clean up unused deps'],
             []
           );
         },
@@ -408,8 +408,8 @@ class HelpCommand {
           logger.commandHelp(
             'link',
             'Link a local package for global use (development).',
-            'pm link <path>',
-            ['pm link ./my-package      - Link local package'],
+            'universal-pm link <path>',
+            ['universal-pm link ./my-package      - Link local package'],
             []
           );
         },
@@ -417,8 +417,8 @@ class HelpCommand {
           logger.commandHelp(
             'unlink',
             'Remove a globally linked package.',
-            'pm unlink <package>',
-            ['pm unlink my-package      - Remove link'],
+            'universal-pm unlink <package>',
+            ['universal-pm unlink my-package      - Remove link'],
             []
           );
         },
@@ -426,8 +426,8 @@ class HelpCommand {
           logger.commandHelp(
             'web',
             'Open the npm website in your default browser.',
-            'pm web',
-            ['pm web                    - Open npmjs.com', 'pm browse                  - Same as web'],
+            'universal-pm web',
+            ['universal-pm web                    - Open npmjs.com', 'universal-pm browse                  - Same as web'],
             ['dashboard', 'browse']
           );
         },
@@ -435,8 +435,8 @@ class HelpCommand {
           logger.commandHelp(
             'cron',
             'Show how to set up automatic daily update checks using Windows Task Scheduler.',
-            'pm cron',
-            ['pm cron                   - Get setup instructions'],
+            'universal-pm cron',
+            ['universal-pm cron                   - Get setup instructions'],
             []
           );
         },
@@ -444,8 +444,8 @@ class HelpCommand {
           logger.commandHelp(
             'notify',
             'Show current update status (for scripting/notifications).',
-            'pm notify',
-            ['pm notify                 - Show update status'],
+            'universal-pm notify',
+            ['universal-pm notify                 - Show update status'],
             ['notification', 'alert']
           );
         },
@@ -453,8 +453,8 @@ class HelpCommand {
           logger.commandHelp(
             'init',
             'Create a configuration file for PM-CLI.',
-            'pm init',
-            ['pm init                   - Create config file'],
+            'universal-pm init',
+            ['universal-pm init                   - Create config file'],
             []
           );
         },
@@ -462,8 +462,8 @@ class HelpCommand {
           logger.commandHelp(
             'config',
             'Show or manage PM-CLI configuration.',
-            'pm config',
-            ['pm config                 - Show config', 'pm init                    - Create config'],
+            'universal-pm config',
+            ['universal-pm config                 - Show config', 'universal-pm init                    - Create config'],
             ['settings', 'cfg']
           );
         },
@@ -471,8 +471,8 @@ class HelpCommand {
           logger.commandHelp(
             'group',
             'Filter packages by package manager (npm, pnpm, or bun).',
-            'pm group <npm|pnpm|bun>',
-            ['pm group npm              - Show only npm', 'pm group bun               - Show only bun'],
+            'universal-pm group <npm|pnpm|bun>',
+            ['universal-pm group npm              - Show only npm', 'universal-pm group bun               - Show only bun'],
             ['filter', 'mgr']
           );
         },
@@ -480,8 +480,8 @@ class HelpCommand {
           logger.commandHelp(
             'keywords',
             'Search npm packages by keyword.',
-            'pm keywords <word>',
-            ['pm keywords cli           - Find CLI packages'],
+            'universal-pm keywords <word>',
+            ['universal-pm keywords cli           - Find CLI packages'],
             ['keyword', 'tags']
           );
         },

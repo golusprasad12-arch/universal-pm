@@ -133,52 +133,52 @@ const helpContent: Record<string, () => void> = {
     
     console.log('');
     console.log(`  ${chalk.green.bold('» Examples')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm list')}                       ${chalk.gray('Show all packages')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm check')}                      ${chalk.gray('Check for updates')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm install typescript')}          ${chalk.gray('Install package')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm available react')}            ${chalk.gray('Check npm/pnpm/bun')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm github typescript cli')}       ${chalk.gray('Search GitHub')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm info react')}                  ${chalk.gray('View package details')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm list')}                       ${chalk.gray('Show all packages')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm check')}                      ${chalk.gray('Check for updates')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm install typescript')}          ${chalk.gray('Install package')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm available react')}            ${chalk.gray('Check npm/pnpm/bun')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm github typescript cli')}       ${chalk.gray('Search GitHub')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm info react')}                  ${chalk.gray('View package details')}`);
     
     console.log('');
-    console.log(`  ${chalk.gray('Use')} ${chalk.cyan('pm help <command>')} ${chalk.gray('for detailed information.')}`);
+    console.log(`  ${chalk.gray('Use')} ${chalk.cyan('universal-pm help <command>')} ${chalk.gray('for detailed information.')}`);
     console.log('');
   },
   
   'list': () => {
-    console.log(`\n  ${white('pm list')}`);
+    console.log(`\n  ${white('universal-pm list')}`);
     console.log(`  ${dim('List all globally installed packages from npm, pnpm, and bun.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm list')} ${dim('[npm|pnpm|bun]')}`);
+    console.log(`  ${dim('universal-pm list')} ${dim('[npm|pnpm|bun]')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm list')}`);
-    console.log(`  ${dim('pm list bun')}`);
-    console.log(`  ${dim('pm ls')}`);
+    console.log(`  ${dim('universal-pm list')}`);
+    console.log(`  ${dim('universal-pm list bun')}`);
+    console.log(`  ${dim('universal-pm ls')}`);
     console.log('');
   },
   
   'install': () => {
-    console.log(`\n  ${white('pm install')}`);
+    console.log(`\n  ${white('universal-pm install')}`);
     console.log(`  ${dim('Install a package globally. Works with npm, pnpm, and bun.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm install')} ${dim('<package>[@version]')}`);
+    console.log(`  ${dim('universal-pm install')} ${dim('<package>[@version]')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm install typescript')}`);
-    console.log(`  ${dim('pm install typescript@5.0.0')}`);
-    console.log(`  ${dim('pm i typescript')}`);
+    console.log(`  ${dim('universal-pm install typescript')}`);
+    console.log(`  ${dim('universal-pm install typescript@5.0.0')}`);
+    console.log(`  ${dim('universal-pm i typescript')}`);
     console.log('');
   },
   
   'check': () => {
-    console.log(`\n  ${white('pm check')}`);
+    console.log(`\n  ${white('universal-pm check')}`);
     console.log(`  ${dim('Check for available updates for all installed packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm check')}`);
+    console.log(`  ${dim('universal-pm check')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
     console.log(`  ${dim('universal-pm update, universal-pm upgrade, universal-pm outdated')}`);
@@ -186,358 +186,358 @@ const helpContent: Record<string, () => void> = {
   },
   
   'search': () => {
-    console.log(`\n  ${white('pm search')}`);
+    console.log(`\n  ${white('universal-pm search')}`);
     console.log(`  ${dim('Search the npm registry for packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm search')} ${dim('<query>')}`);
+    console.log(`  ${dim('universal-pm search')} ${dim('<query>')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm search react')}`);
+    console.log(`  ${dim('universal-pm search react')}`);
     console.log('');
   },
   
   'info': () => {
-    console.log(`\n  ${white('pm info')}`);
+    console.log(`\n  ${white('universal-pm info')}`);
     console.log(`  ${dim('Show detailed information about a package.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm info')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm info')} ${dim('<package>')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm view, pm show')}`);
+    console.log(`  ${dim('universal-pm view, pm show')}`);
     console.log('');
   },
   
   'uninstall': () => {
-    console.log(`\n  ${white('pm uninstall')}`);
+    console.log(`\n  ${white('universal-pm uninstall')}`);
     console.log(`  ${dim('Remove a globally installed package.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm uninstall')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm uninstall')} ${dim('<package>')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm remove, pm rm')}`);
+    console.log(`  ${dim('universal-pm remove, pm rm')}`);
     console.log('');
   },
   
   'version': () => {
-    console.log(`\n  ${white('pm version')}`);
+    console.log(`\n  ${white('universal-pm version')}`);
     console.log(`  ${dim('Show version information for Node.js, npm, pnpm, and bun.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm version')}`);
+    console.log(`  ${dim('universal-pm version')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm v, pm ver')}`);
+    console.log(`  ${dim('universal-pm v, pm ver')}`);
     console.log('');
   },
   
   'stats': () => {
-    console.log(`\n  ${white('pm stats')}`);
+    console.log(`\n  ${white('universal-pm stats')}`);
     console.log(`  ${dim('Show statistics about installed packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm stats')}`);
+    console.log(`  ${dim('universal-pm stats')}`);
     console.log('');
   },
   
   'doctor': () => {
-    console.log(`\n  ${white('pm doctor')}`);
+    console.log(`\n  ${white('universal-pm doctor')}`);
     console.log(`  ${dim('Check system health - verifies all tools are installed.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm doctor')}`);
+    console.log(`  ${dim('universal-pm doctor')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm health, pm diag')}`);
+    console.log(`  ${dim('universal-pm health, pm diag')}`);
     console.log('');
   },
   
   'audit': () => {
-    console.log(`\n  ${white('pm audit')}`);
+    console.log(`\n  ${white('universal-pm audit')}`);
     console.log(`  ${dim('Check for security vulnerabilities in packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm audit')}`);
+    console.log(`  ${dim('universal-pm audit')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm security')}`);
+    console.log(`  ${dim('universal-pm security')}`);
     console.log('');
   },
   
   'clean': () => {
-    console.log(`\n  ${white('pm clean')}`);
+    console.log(`\n  ${white('universal-pm clean')}`);
     console.log(`  ${dim('Clean cache to free up disk space.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm clean')}`);
+    console.log(`  ${dim('universal-pm clean')}`);
     console.log('');
   },
   
   'backup': () => {
-    console.log(`\n  ${white('pm backup')}`);
+    console.log(`\n  ${white('universal-pm backup')}`);
     console.log(`  ${dim('Save your package list to a file.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm backup')}`);
+    console.log(`  ${dim('universal-pm backup')}`);
     console.log('');
     console.log(`  ${dim('Saves to: packages-backup.json')}`);
     console.log('');
   },
   
   'export': () => {
-    console.log(`\n  ${white('pm export')}`);
+    console.log(`\n  ${white('universal-pm export')}`);
     console.log(`  ${dim('Export packages to JSON or CSV file.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm export')} ${dim('[json|csv]')}`);
+    console.log(`  ${dim('universal-pm export')} ${dim('[json|csv]')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm export json')}`);
-    console.log(`  ${dim('pm export csv')}`);
+    console.log(`  ${dim('universal-pm export json')}`);
+    console.log(`  ${dim('universal-pm export csv')}`);
     console.log('');
   },
   
   'find': () => {
-    console.log(`\n  ${white('pm find')}`);
+    console.log(`\n  ${white('universal-pm find')}`);
     console.log(`  ${dim('Search for installed packages by name.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm find')} ${dim('<name>')}`);
+    console.log(`  ${dim('universal-pm find')} ${dim('<name>')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm find open')}`);
+    console.log(`  ${dim('universal-pm find open')}`);
     console.log('');
   },
   
   'which': () => {
-    console.log(`\n  ${white('pm which')}`);
+    console.log(`\n  ${white('universal-pm which')}`);
     console.log(`  ${dim('Show where a package is installed.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm which')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm which')} ${dim('<package>')}`);
     console.log('');
   },
   
   'deps': () => {
-    console.log(`\n  ${white('pm deps')}`);
+    console.log(`\n  ${white('universal-pm deps')}`);
     console.log(`  ${dim('Show dependencies of a package.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm deps')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm deps')} ${dim('<package>')}`);
     console.log('');
   },
   
   'downloads': () => {
-    console.log(`\n  ${white('pm downloads')}`);
+    console.log(`\n  ${white('universal-pm downloads')}`);
     console.log(`  ${dim('Show download count for a package (last 30 days).')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm downloads')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm downloads')} ${dim('<package>')}`);
     console.log('');
   },
   
   'license': () => {
-    console.log(`\n  ${white('pm license')}`);
+    console.log(`\n  ${white('universal-pm license')}`);
     console.log(`  ${dim('Show the license of a package.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm license')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm license')} ${dim('<package>')}`);
     console.log('');
   },
   
   'home': () => {
-    console.log(`\n  ${white('pm home')}`);
+    console.log(`\n  ${white('universal-pm home')}`);
     console.log(`  ${dim('Open package homepage in browser.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm home')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm home')} ${dim('<package>')}`);
     console.log('');
   },
   
   'bugs': () => {
-    console.log(`\n  ${white('pm bugs')}`);
+    console.log(`\n  ${white('universal-pm bugs')}`);
     console.log(`  ${dim('Open bug report page in browser.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm bugs')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm bugs')} ${dim('<package>')}`);
     console.log('');
   },
   
   'repo': () => {
-    console.log(`\n  ${white('pm repo')}`);
+    console.log(`\n  ${white('universal-pm repo')}`);
     console.log(`  ${dim('Open source repository in browser.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm repo')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm repo')} ${dim('<package>')}`);
     console.log('');
   },
   
   'compare': () => {
-    console.log(`\n  ${white('pm compare')}`);
+    console.log(`\n  ${white('universal-pm compare')}`);
     console.log(`  ${dim('Compare two packages side by side.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm compare')} ${dim('<pkg1> <pkg2>')}`);
+    console.log(`  ${dim('universal-pm compare')} ${dim('<pkg1> <pkg2>')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm cmp')}`);
+    console.log(`  ${dim('universal-pm cmp')}`);
     console.log('');
   },
   
   'star': () => {
-    console.log(`\n  ${white('pm star')}`);
+    console.log(`\n  ${white('universal-pm star')}`);
     console.log(`  ${dim('Mark a package as favorite.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm star')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm star')} ${dim('<package>')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm fav, pm bookmark')}`);
+    console.log(`  ${dim('universal-pm fav, pm bookmark')}`);
     console.log('');
   },
   
   'favorites': () => {
-    console.log(`\n  ${white('pm favorites')}`);
+    console.log(`\n  ${white('universal-pm favorites')}`);
     console.log(`  ${dim('List your favorite packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm favorites')}`);
+    console.log(`  ${dim('universal-pm favorites')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm favs, pm starred')}`);
+    console.log(`  ${dim('universal-pm favs, pm starred')}`);
     console.log('');
   },
   
   'alias': () => {
-    console.log(`\n  ${white('pm alias')}`);
+    console.log(`\n  ${white('universal-pm alias')}`);
     console.log(`  ${dim('Create shortcuts for package names.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm alias')} ${dim('[list|<name>=<package>]')}`);
+    console.log(`  ${dim('universal-pm alias')} ${dim('[list|<name>=<package>]')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm aliases')}`);
+    console.log(`  ${dim('universal-pm aliases')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm alias list')}`);
-    console.log(`  ${dim('pm alias o=openclaw')}`);
+    console.log(`  ${dim('universal-pm alias list')}`);
+    console.log(`  ${dim('universal-pm alias o=openclaw')}`);
     console.log('');
   },
   
   'run': () => {
-    console.log(`\n  ${white('pm run')}`);
+    console.log(`\n  ${white('universal-pm run')}`);
     console.log(`  ${dim('Run a global CLI command.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm run')} ${dim('<command>')}`);
+    console.log(`  ${dim('universal-pm run')} ${dim('<command>')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm exec, pm execute')}`);
+    console.log(`  ${dim('universal-pm exec, pm execute')}`);
     console.log('');
   },
   
   'web': () => {
-    console.log(`\n  ${white('pm web')}`);
+    console.log(`\n  ${white('universal-pm web')}`);
     console.log(`  ${dim('Open npm website in browser.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm web')}`);
+    console.log(`  ${dim('universal-pm web')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm browse, pm dashboard')}`);
+    console.log(`  ${dim('universal-pm browse, pm dashboard')}`);
     console.log('');
   },
   
   'dry-run': () => {
-    console.log(`\n  ${white('pm dry-run')}`);
+    console.log(`\n  ${white('universal-pm dry-run')}`);
     console.log(`  ${dim('Preview updates without actually updating.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm dry-run')}`);
+    console.log(`  ${dim('universal-pm dry-run')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm preview, pm simulate')}`);
+    console.log(`  ${dim('universal-pm preview, pm simulate')}`);
     console.log('');
   },
   
   'major': () => {
-    console.log(`\n  ${white('pm major')}`);
+    console.log(`\n  ${white('universal-pm major')}`);
     console.log(`  ${dim('Check for major version updates only.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm major')}`);
+    console.log(`  ${dim('universal-pm major')}`);
     console.log('');
   },
   
   'group': () => {
-    console.log(`\n  ${white('pm group')}`);
+    console.log(`\n  ${white('universal-pm group')}`);
     console.log(`  ${dim('Filter packages by package manager.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm group')} ${dim('<npm|pnpm|bun>')}`);
+    console.log(`  ${dim('universal-pm group')} ${dim('<npm|pnpm|bun>')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm group npm')}`);
-    console.log(`  ${dim('pm group bun')}`);
+    console.log(`  ${dim('universal-pm group npm')}`);
+    console.log(`  ${dim('universal-pm group bun')}`);
     console.log('');
   },
   
   'size': () => {
-    console.log(`\n  ${white('pm size')}`);
+    console.log(`\n  ${white('universal-pm size')}`);
     console.log(`  ${dim('Show disk space used by packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm size')}`);
+    console.log(`  ${dim('universal-pm size')}`);
     console.log('');
   },
   
   'age': () => {
-    console.log(`\n  ${white('pm age')}`);
+    console.log(`\n  ${white('universal-pm age')}`);
     console.log(`  ${dim('Show when packages were installed.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm age')}`);
+    console.log(`  ${dim('universal-pm age')}`);
     console.log('');
   },
   
   'tree': () => {
-    console.log(`\n  ${white('pm tree')}`);
+    console.log(`\n  ${white('universal-pm tree')}`);
     console.log(`  ${dim('Show dependency tree.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm tree')} ${dim('[package]')}`);
+    console.log(`  ${dim('universal-pm tree')} ${dim('[package]')}`);
     console.log('');
   },
   
   'duplicates': () => {
-    console.log(`\n  ${white('pm duplicates')}`);
+    console.log(`\n  ${white('universal-pm duplicates')}`);
     console.log(`  ${dim('Find packages installed in multiple managers.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm duplicates')}`);
+    console.log(`  ${dim('universal-pm duplicates')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm dup, pm dups')}`);
+    console.log(`  ${dim('universal-pm dup, pm dups')}`);
     console.log('');
   },
   
   'reverse': () => {
-    console.log(`\n  ${white('pm reverse')}`);
+    console.log(`\n  ${white('universal-pm reverse')}`);
     console.log(`  ${dim('Show packages that depend on a package.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm reverse')} ${dim('<package>')}`);
+    console.log(`  ${dim('universal-pm reverse')} ${dim('<package>')}`);
     console.log('');
   },
   
   'recent': () => {
-    console.log(`\n  ${white('pm recent')}`);
+    console.log(`\n  ${white('universal-pm recent')}`);
     console.log(`  ${dim('Show recently updated packages.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm recent')}`);
+    console.log(`  ${dim('universal-pm recent')}`);
     console.log('');
   },
   
@@ -681,19 +681,19 @@ const helpContent: Record<string, () => void> = {
   },
 
   'available': () => {
-    console.log(`\n  ${white('pm available')}`);
+    console.log(`\n  ${white('universal-pm available')}`);
     console.log(`  ${dim('Check if a package is available in npm, pnpm, and bun registries.')}`);
     console.log('');
     console.log(`  ${white('Usage')}`);
-    console.log(`  ${dim('pm available')} ${dim('<github-url|package-name>')}`);
+    console.log(`  ${dim('universal-pm available')} ${dim('<github-url|package-name>')}`);
     console.log('');
     console.log(`  ${white('Examples')}`);
-    console.log(`  ${dim('pm available https://github.com/facebook/react')}`);
-    console.log(`  ${dim('pm available facebook/react')}`);
-    console.log(`  ${dim('pm available typescript')}`);
+    console.log(`  ${dim('universal-pm available https://github.com/facebook/react')}`);
+    console.log(`  ${dim('universal-pm available facebook/react')}`);
+    console.log(`  ${dim('universal-pm available typescript')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm av, pm checkpkg')}`);
+    console.log(`  ${dim('universal-pm av, pm checkpkg')}`);
     console.log('');
   },
 
@@ -1095,7 +1095,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
       
       console.log('');
       logger.subheader('Install Commands');
-      logger.cmdHighlight('pm install ' + pkg);
+      logger.cmdHighlight('universal-pm install ' + pkg);
       logger.cmdHighlight('bun add ' + pkg);
       logger.cmdHighlight('npm i -g ' + pkg);
       

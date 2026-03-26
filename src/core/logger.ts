@@ -260,7 +260,7 @@ export const logger = {
 
     const title = "universal-pm";
     const subtitle = "Professional Package Manager CLI";
-    const version = "v0.0.3";
+    const version = "v0.0.4";
     const width = 70;
     const centerTitle = " ".repeat(Math.floor((width - title.length) / 2)) + title;
     const centerSubtitle = " ".repeat(Math.floor((width - subtitle.length) / 2)) + subtitle;
@@ -466,7 +466,7 @@ export const logger = {
 
   suggest: (wrong: string, right: string) => {
     console.log(`\n  ${t.warn('[WRN]')} Unknown: ${wrong}`);
-    console.log(`  ${t.info('[INF]')} Did you mean: ${t.bold(t.white('pm ' + right + '?'))}`);
+    console.log(`  ${t.info('[INF]')} Did you mean: ${t.bold(t.white('universal-pm ' + right + '?'))}`);
   },
 
   tip: (tip: string) => console.log(`\n  ${t.info('•')} ${t.dim(tip)}`),
@@ -551,12 +551,12 @@ export const logger = {
      console.log(`  ${t.dim(description)}`);
      console.log('');
      console.log(`  ${t.bold(t.white('Usage'))}`);
-     console.log(`  ${t.dim(`pm ${usage}`)}`);
-     
-     if (aliases.length > 0) {
-       console.log('');
-       console.log(`  ${t.bold(t.white('Aliases'))}`);
-       console.log(`  ${aliases.map(a => t.dim(`pm ${a}`)).join(', ')}`);
+      console.log(`  ${t.dim(`universal-pm ${usage}`)}`);
+      
+      if (aliases.length > 0) {
+        console.log('');
+        console.log(`  ${t.bold(t.white('Aliases'))}`);
+        console.log(`  ${aliases.map(a => t.dim(`universal-pm ${a}`)).join(', ')}`);
      }
      
      if (examples.length > 0) {
