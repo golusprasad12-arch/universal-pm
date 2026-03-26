@@ -1662,16 +1662,16 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
 
   cron: async () => {
     logger.logo('cron');
-    logger.info('Auto-update setup instructions:');
+    logger.info('Auto-update is not built-in. Use your OS scheduler:');
     console.log('');
-    logger.subheader('Windows (Task Scheduler)');
-    console.log('  schtasks /create /tn "universal-pm-check" /tr "universal-pm check" /sc daily /st 09:00');
+    logger.subheader('Windows Task Scheduler');
+    console.log('  Create a task to run: universal-pm check');
     console.log('');
-    logger.subheader('macOS/Linux (cron)');
-    console.log('  0 9 * * * universal-pm check');
+    logger.subheader('macOS/Linux cron');
+    console.log('  Add to crontab: 0 9 * * * universal-pm check');
     console.log('');
     logger.subheader('Note');
-    logger.info('Replace "universal-pm" with full path if needed');
+    logger.info('Schedule this command to run daily for update checks');
     sep();
   },
 
