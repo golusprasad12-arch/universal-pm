@@ -1211,7 +1211,23 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
      }
    },
 
-  run: async (args) => { if(args[0]) execSync(args.join(' '), {stdio:'inherit'}); },
+  run: async (args) => {
+    if (!args[0]) {
+      logger.errorHelp('Usage: universal-pm run <command> [args...]');
+      return;
+    }
+    try {
+      execSync(args.join(' '), { stdio: 'inherit' });
+    } catch (error: any) {
+      if (error.code === 'ENOENT' || error.status === 1) {
+        logger.error(`Command not found: ${args[0]}`);
+        logger.info('Make sure the command is installed globally');
+        logger.tip(`Example: universal-pm run typescript --version`);
+      } else {
+        logger.error(`Failed to run command: ${error.message}`);
+      }
+    }
+  },
 
   init: async () => { writeFileSync(cfgFile, JSON.stringify({autoUpdate:false,defaultManager:'npm'},null,2)); logger.success('Config created'); },
 
@@ -1644,7 +1660,20 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
     sep();
   },
 
-  cron: async () => { logger.logo('cron'); logger.info('Run as Admin:'); console.log('  schtasks /create /tn "PMP-AutoUpdate" /tr "bun run pm check" /sc daily /st 09:00'); sep(); },
+  cron: async () => {
+    logger.logo('cron');
+    logger.info('Auto-update setup instructions:');
+    console.log('');
+    logger.subheader('Windows (Task Scheduler)');
+    console.log('  schtasks /create /tn "universal-pm-check" /tr "universal-pm check" /sc daily /st 09:00');
+    console.log('');
+    logger.subheader('macOS/Linux (cron)');
+    console.log('  0 9 * * * universal-pm check');
+    console.log('');
+    logger.subheader('Note');
+    logger.info('Replace "universal-pm" with full path if needed');
+    sep();
+  },
 
   notify: async () => await commands.check([]),
 
