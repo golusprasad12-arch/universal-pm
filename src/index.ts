@@ -1192,7 +1192,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
 
   run: async (args) => { if(args[0]) execSync(args.join(' '), {stdio:'inherit'}); },
 
-  init: async () => writeFileSync(cfgFile, JSON.stringify({autoUpdate:false,defaultManager:'npm'},null,2)) || logger.success('Config created'),
+  init: async () => { writeFileSync(cfgFile, JSON.stringify({autoUpdate:false,defaultManager:'npm'},null,2)); logger.success('Config created'); },
 
    config: async () => {
      logger.logo('config');
@@ -1232,7 +1232,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
   // Package Size
   size: async () => {
     logger.logo('size');
-    const pk = pkgs();
+    const pk = await pkgs();
     const loc = execSync('npm root -g', {encoding:'utf8'}).trim();
     logger.kv('Location', loc);
     logger.kv('Total Packages', String(pk.length));
@@ -1244,7 +1244,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
   // Package Age/Install Date
   age: async () => {
     logger.logo('age');
-    const pk = pkgs();
+    const pk = await pkgs();
     const loc = execSync('npm root -g', {encoding:'utf8'}).trim();
     logger.kv('Location', loc);
     logger.kv('Total Packages', String(pk.length));

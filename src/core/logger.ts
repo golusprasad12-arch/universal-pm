@@ -260,7 +260,7 @@ export const logger = {
 
     const title = "universal-pm";
     const subtitle = "Professional Package Manager CLI";
-    const version = "v0.0.4";
+    const version = "v0.0.5";
     const width = 70;
     const centerTitle = " ".repeat(Math.floor((width - title.length) / 2)) + title;
     const centerSubtitle = " ".repeat(Math.floor((width - subtitle.length) / 2)) + subtitle;
@@ -369,7 +369,7 @@ export const logger = {
       return Math.max(h.length, maxContentWidth) + 2;
     });
 
-    const borderColor = t.tableBorder || t.dim;
+    const borderColor = (t as any).tableBorder || t.dim;
     const headerColorFn = (s: string) => chalk.bold.cyan(s);
 
     const pkgColors = [
@@ -675,16 +675,9 @@ export const logger = {
   },
 
   // Warning block
-  warnBlock: (message: string) => {
+  warnBlock: (message: string, details?: string[]) => {
     console.log('');
-    console.log(`  ${t.warn('⚠')} ${t.bold(t.white('Warning'))}`);
-    console.log(`  ${t.dim('  ' + message)}`);
-  },
-
-  // Error block with details
-  errorBlock: (message: string, details?: string[]) => {
-    console.log('');
-    console.log(`  ${t.error('✗')} ${t.bold(t.white(' Error '))} ${t.dim(message)}`);
+    console.log(`  ${t.warn('⚠')} ${t.bold(t.white(' Warning '))} ${t.dim(message)}`);
     if (details && details.length > 0) {
       console.log('');
       details.forEach(detail => {
@@ -693,21 +686,10 @@ export const logger = {
     }
   },
 
-  // Success block
-  successBlock: (message: string, details?: string[]) => {
+  // Error block with details
+  errorBlock: (message: string, details?: string[]) => {
     console.log('');
-    console.log(`  ${t.success('✓')} ${t.bold(t.white(message))}`);
-    if (details && details.length > 0) {
-      details.forEach(detail => {
-        console.log(`    ${t.dim('• ' + detail)}`);
-      });
-    }
-  },
-  
-  // Warn block
-  warnBlock: (message: string, details?: string[]) => {
-    console.log('');
-    console.log(`  ${t.warn('⚠')} ${t.bold(t.white(' Warning '))} ${t.dim(message)}`);
+    console.log(`  ${t.error('✗')} ${t.bold(t.white(' Error '))} ${t.dim(message)}`);
     if (details && details.length > 0) {
       console.log('');
       details.forEach(detail => {

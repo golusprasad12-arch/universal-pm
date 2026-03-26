@@ -10,13 +10,12 @@ export class PackageManager {
     bun
   };
 
-  async listAll(): Promise<Package[]> {
-    const results = await Promise.all([
-      Promise.resolve(npm.listGlobal()),
-      Promise.resolve(pnpm.listGlobal()),
-      Promise.resolve(bun.listGlobal())
-    ]);
-    return results.flat();
+  listAll(): Package[] {
+    return [
+      ...npm.listGlobal(),
+      ...pnpm.listGlobal(),
+      ...bun.listGlobal()
+    ];
   }
 
   listByManager(manager: ManagerType): Package[] {

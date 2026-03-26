@@ -636,7 +636,7 @@ class CheckCommand {
 
   async execute(args: string[]): Promise<void> {
     const packages = getCachedPackages(true);
-    const updates = pm.checkUpdates(packages);
+    const updates = await pm.checkUpdates(packages);
     
     if (updates.length === 0) {
       logger.success('All packages are up to date!');
@@ -745,7 +745,7 @@ class AuditCommand { name = 'audit'; description = 'Audit'; aliases = ['security
 class CleanCommand { name = 'clean'; description = 'Clean'; async execute() { try{execSync('npm cache clean --force',{stdio:'ignore'})}catch{} logger.success('Cache cleaned'); } }
 class WebCommand { name = 'web'; description = 'Web'; async execute() { execSync('start https://www.npmjs.com'); } }
 class OutdatedCommand { name = 'outdated'; description = 'Outdated'; aliases = ['out']; async execute() { await new CheckCommand().execute([]); } }
-class DryRunCommand { name = 'dry-run'; description = 'Dry-run'; async execute() { const p=getCachedPackages(), u=pm.checkUpdates(p); logger.header('DRY RUN'); u.length?logger.table(['Package','Change'],u.map(x=>[x.name,`${x.version} -> ${x.latest}`])):logger.success('All up to date'); separator(); } }
+class DryRunCommand { name = 'dry-run'; description = 'Dry-run'; async execute() { const p=getCachedPackages(), u=await pm.checkUpdates(p); logger.header('DRY RUN'); u.length?logger.table(['Package','Change'],u.map(x=>[x.name,`${x.version} -> ${x.latest}`])):logger.success('All up to date'); separator(); } }
 class PopularCommand { name = 'popular'; description = 'Popular'; async execute() { logger.header('Popular'); logger.info('Run: pm check then pm help popular'); separator(); } }
 class RecentCommand { name = 'recent'; description = 'Recent'; async execute() { logger.header('Recent'); logger.info('Run: pm check then pm help recent'); separator(); } }
 class GroupCommand { name = 'group'; description = 'Group'; async execute(a:string[]) { if(a[0]&&['npm','pnpm','bun'].includes(a[0])) await new ListCommand().execute(a); } }
@@ -757,7 +757,7 @@ class AgeCommand { name = 'age'; description = 'Age'; async execute() { logger.h
 class TreeCommand { name = 'tree'; description = 'Tree'; async execute() { execSync('npm list -g --depth=2',{stdio:'inherit'}); } }
 class DuplicatesCommand { name = 'duplicates'; description = 'Duplicates'; aliases=['dup']; async execute() { const p=getCachedPackages(), m=new Map(); p.forEach(x=>{if(!m.has(x.name))m.set(x.name,[]);m.get(x.name)!.push(x)}); logger.header('Duplicates'); let f=false; m.forEach((v,k)=>{if(v.length>1){f=true;logger.subheader(k);logger.table(['Version','Manager'],v.map(x=>[x.version,`[${x.manager}]`]))}}); if(!f)logger.success('None'); separator(); } }
 class CronCommand { name = 'cron'; description = 'Cron'; async execute() { logger.header('Auto-Check'); logger.info('Run: pm help cron'); separator(); } }
-class NotifyCommand { name = 'notify'; description = 'Notify'; async execute() { const p=getCachedPackages(), u=pm.checkUpdates(p); u.length?logger.warn(`${u.length} updates`):logger.success('All up to date'); } }
+class NotifyCommand { name = 'notify'; description = 'Notify'; async execute() { const p=getCachedPackages(), u=await pm.checkUpdates(p); u.length?logger.warn(`${u.length} updates`):logger.success('All up to date'); } }
 class InitCommand { name = 'init'; description = 'Init'; async execute() { writeFileSync(configFile,JSON.stringify({autoUpdate:false,defaultManager:'npm'},null,2)); logger.success('Config created'); } }
 class ConfigCommand { name = 'config'; description = 'Config'; async execute() { logger.header('Config'); if(existsSync(configFile)){const c=JSON.parse(readFileSync(configFile,'utf8'));Object.entries(c).forEach(([k,v])=>logger.kv(k,String(v)))}else logger.info('Run: pm init'); separator(); } }
 class RestoreCommand { name = 'restore'; description = 'Restore'; async execute() { if(!existsSync(backupFile)){logger.error('No backup');return;} const b=JSON.parse(readFileSync(backupFile,'utf8'));logger.kv('Date',b.date);logger.kv('Packages',String(b.packages.length)); } }
@@ -768,7 +768,7 @@ class RunCommand { name = 'run'; description = 'Run'; async execute(a:string[]) 
 class PruneCommand { name = 'prune'; description = 'Prune'; async execute() { try{execSync('npm prune',{stdio:'inherit'});logger.success('Done')}catch{} } }
 class LinkCommand { name = 'link'; description = 'Link'; async execute(a:string[]) { if(!a[0])return; try{execSync(`npm link "${a[0]}"`,{stdio:'inherit'});logger.success('Linked')}catch{} } }
 class UnlinkCommand { name = 'unlink'; description = 'Unlink'; async execute(a:string[]) { if(!a[0])return; try{execSync(`npm unlink -g "${a[0]}"`,{stdio:'inherit'});logger.success('Unlinked')}catch{} } }
-class MajorCommand { name = 'major'; description = 'Major'; async execute() { const p=getCachedPackages(),u=pm.checkUpdates(p).filter(x=>x.version.split('.')[0]!==x.latest.split('.')[0]); u.length?logger.table(['Package','Current','Latest'],u.map(x=>[x.name,x.version,x.latest])):logger.success('None'); separator(); } }
+class MajorCommand { name = 'major'; description = 'Major'; async execute() { const p=getCachedPackages(),u=(await pm.checkUpdates(p)).filter(x=>x.version.split('.')[0]!==x.latest.split('.')[0]); u.length?logger.table(['Package','Current','Latest'],u.map(x=>[x.name,x.version,x.latest])):logger.success('None'); separator(); } }
 class BugsCommand { name = 'bugs'; description = 'Bugs'; async execute(a:string[]) { if(!a[0])return; try{const b=execSync(`npm view ${a[0]} bugs.url`,{encoding:'utf8'}).trim();if(b)execSync(`start "${b}"`)}catch{} } }
 class RepoCommand { name = 'repo'; description = 'Repo'; async execute(a:string[]) { if(!a[0])return; try{let r=execSync(`npm view ${a[0]} repository.url`,{encoding:'utf8'}).trim().replace('git+','').replace('.git','');if(r)execSync(`start "${r}"`)}catch{} } }
 class HomeCommand { name = 'home'; description = 'Home'; async execute(a:string[]) { if(!a[0])return; try{const h=execSync(`npm view ${a[0]} homepage`,{encoding:'utf8'}).trim();if(h)execSync(`start "${h}"`)}catch{} } }

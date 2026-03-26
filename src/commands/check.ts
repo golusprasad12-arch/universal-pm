@@ -12,7 +12,7 @@ export class CheckCommand extends BaseCommand {
     const packages = pm.listAll();
     logger.header(`Checking ${packages.length} packages...`);
     
-    const updates = pm.checkUpdates(packages);
+    const updates = await pm.checkUpdates(packages);
     
     if (updates.length === 0) {
       logger.success('All packages are up to date!');
@@ -31,7 +31,7 @@ export class CheckCommand extends BaseCommand {
     logger.table(['Package', 'Current', 'Latest', 'Manager'], rows);
     separator();
     
-    logger.info('Run: pm install <package> to update');
+    logger.info('Run: universal-pm install <package> to update');
   }
 }
 
