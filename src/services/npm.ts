@@ -3,12 +3,19 @@ import type { Package, Manager } from '../types/index.ts';
 
 export class NpmService implements Manager {
   name = 'npm' as const;
+  private listCache: { packages: Package[]; timestamp: number } | null = null;
+  private readonly LIST_CACHE_TTL = 30000; // 30s cache for list
 
   listGlobal(): Package[] {
+    const now = Date.now();
+    if (this.listCache && now - this.listCache.timestamp < this.LIST_CACHE_TTL) {
+      return this.listCache.packages;
+    }
+
     try {
       const output = execSync('npm list -g --depth=0', { encoding: 'utf8', stdio: 'pipe' });
       const packages: Package[] = [];
-      
+
       for (const line of output.split('\n').slice(2)) {
         const match = line.match(/--\s+(@[\w-]+\/[\w-]+|[\w-]+)@([\d.]+[-a-zA-Z0-9.]*)/);
         if (match && match[1] && match[2]) {
@@ -19,6 +26,8 @@ export class NpmService implements Manager {
           });
         }
       }
+      
+      this.listCache = { packages, timestamp: now };
       return packages;
     } catch {
       return [];

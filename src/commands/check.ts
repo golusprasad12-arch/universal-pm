@@ -22,6 +22,7 @@ export class CheckCommand extends BaseCommand {
     
     if (updates.length === 0) {
       logger.success('All packages are up to date!');
+      separator();
       return;
     }
 
