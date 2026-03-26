@@ -47,7 +47,7 @@ const helpContent: Record<string, () => void> = {
   '': () => {
     logger.banner();
     
-    console.log(`  ${chalk.white.bold('Usage:')} ${chalk.cyan('pm <command> [options]')}`);
+    console.log(`  ${chalk.white.bold('Usage:')} ${chalk.cyan('universal-pm <command> [options]')}`);
     console.log(`  ${chalk.gray('Unified Package Manager for npm, pnpm, and bun')}`);
     console.log('');
 
