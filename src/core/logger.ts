@@ -260,7 +260,7 @@ export const logger = {
 
     const title = "universal-pm";
     const subtitle = "Professional Package Manager CLI";
-    const version = "v0.0.5";
+    const version = "v0.0.6";
     const width = 70;
     const centerTitle = " ".repeat(Math.floor((width - title.length) / 2)) + title;
     const centerSubtitle = " ".repeat(Math.floor((width - subtitle.length) / 2)) + subtitle;

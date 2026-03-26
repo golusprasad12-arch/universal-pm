@@ -493,22 +493,22 @@ class HelpCommand {
         return;
       }
 
-       // Command not found
-       if (cmd) {
-         logger.error(`Unknown command: ${cmd}`);
-         logger.info('Run: pm help to see all commands');
-         logger.tip('Did you mean one of these?');
-         const allCommands = registry.all().map(c => c.name);
-         const similarCommands = allCommands.filter(c => 
-           cmd && c.startsWith(cmd[0]) && c.length > cmd.length && c.length < cmd.length + 3
-         );
-         if (similarCommands.length > 0) {
-           logger.info(`Similar commands: ${similarCommands.slice(0, 3).join(', ')}`);
-         }
-       } else {
-         logger.error('Unknown command');
-         logger.info('Run: pm help to see all commands');
-       }
+    // Command not found
+    if (cmd) {
+      logger.error(`Unknown command: ${cmd}`);
+      logger.info('Run: universal-pm help to see all commands');
+      logger.tip('Did you mean one of these?');
+      const allCommands = registry.all().map(c => c.name);
+      const similarCommands = allCommands.filter(c =>
+        cmd && c.startsWith(cmd[0]) && c.length > cmd.length && c.length < cmd.length + 3
+      );
+      if (similarCommands.length > 0) {
+        logger.info(`Similar commands: ${similarCommands.slice(0, 3).join(', ')}`);
+      }
+    } else {
+      logger.error('Unknown command');
+      logger.info('Run: universal-pm help to see all commands');
+    }
        return;
     }
 
@@ -519,11 +519,11 @@ class HelpCommand {
     console.log(chalk.cyan('    pm <command> [options]'));
     console.log('');
     
-    console.log(chalk.white('  QUICK START:'));
-    console.log(chalk.gray('    pm list                - See all installed packages'));
-    console.log(chalk.gray('    pm check               - Check for updates'));
-    console.log(chalk.gray('    pm install <name>     - Install a package'));
-    console.log(chalk.gray('    pm help <command>     - Get detailed help for a command'));
+    console.log(chalk.white(' QUICK START:'));
+    console.log(chalk.gray(' universal-pm list - See all installed packages'));
+    console.log(chalk.gray(' universal-pm check - Check for updates'));
+    console.log(chalk.gray(' universal-pm install <name> - Install a package'));
+    console.log(chalk.gray(' universal-pm help <command> - Get detailed help for a command'));
     console.log('');
 
     logger.header('COMMAND CATEGORIES');
@@ -581,9 +581,9 @@ class HelpCommand {
     console.log('');
     separator();
     
-    console.log(chalk.cyan('  For detailed help on any command, run:'));
-    console.log(chalk.white('    pm help <command>'));
-    console.log(chalk.gray('    Example: pm help install'));
+    console.log(chalk.cyan(' For detailed help on any command, run:'));
+    console.log(chalk.white(' universal-pm help <command>'));
+    console.log(chalk.gray(' Example: universal-pm help install'));
     console.log('');
   }
 }
@@ -720,7 +720,7 @@ class InstallCommand {
   aliases = ['i', 'add']; 
   async execute(a: string[]) { 
     if (!a[0]) {
-      logger.errorHelp('Missing package name', 'Usage: pm install <package>[@version]');
+      logger.errorHelp('Missing package name', 'Usage: universal-pm install <package>[@version]');
       return;
     }
     try { 
@@ -746,17 +746,17 @@ class CleanCommand { name = 'clean'; description = 'Clean'; async execute() { tr
 class WebCommand { name = 'web'; description = 'Web'; async execute() { execSync('start https://www.npmjs.com'); } }
 class OutdatedCommand { name = 'outdated'; description = 'Outdated'; aliases = ['out']; async execute() { await new CheckCommand().execute([]); } }
 class DryRunCommand { name = 'dry-run'; description = 'Dry-run'; async execute() { const p=getCachedPackages(), u=await pm.checkUpdates(p); logger.header('DRY RUN'); u.length?logger.table(['Package','Change'],u.map(x=>[x.name,`${x.version} -> ${x.latest}`])):logger.success('All up to date'); separator(); } }
-class PopularCommand { name = 'popular'; description = 'Popular'; async execute() { logger.header('Popular'); logger.info('Run: pm check then pm help popular'); separator(); } }
-class RecentCommand { name = 'recent'; description = 'Recent'; async execute() { logger.header('Recent'); logger.info('Run: pm check then pm help recent'); separator(); } }
+class PopularCommand { name = 'popular'; description = 'Popular'; async execute() { logger.header('Popular'); logger.info('Run: universal-pm check then universal-pm help popular'); separator(); } }
+class RecentCommand { name = 'recent'; description = 'Recent'; async execute() { logger.header('Recent'); logger.info('Run: universal-pm check then universal-pm help recent'); separator(); } }
 class GroupCommand { name = 'group'; description = 'Group'; async execute(a:string[]) { if(a[0]&&['npm','pnpm','bun'].includes(a[0])) await new ListCommand().execute(a); } }
 class LicenseCommand { name = 'license'; description = 'License'; async execute(a:string[]) { if(!a[0])return; try{const l=execSync(`npm view ${a[0]} license`,{encoding:'utf8'}).trim();logger.kv(a[0],l||'Unknown')}catch{} } }
 class DownloadsCommand { name = 'downloads'; description = 'Downloads'; async execute(a:string[]) { if(!a[0])return; try{const d=JSON.parse(execSync(`curl -s "https://api.npmjs.org/downloads/point/last-month/${a[0]}"`,{encoding:'utf8'}));logger.kv(a[0],`${d.downloads?.toLocaleString()||0} downloads`)}catch{} } }
 class DepsCommand { name = 'deps'; description = 'Deps'; async execute(a:string[]) { if(!a[0])return; try{const d=execSync(`npm view ${a[0]} dependencies`,{encoding:'utf8'}).trim();console.log(d||'None')}catch{} separator(); } }
-class SizeCommand { name = 'size'; description = 'Size'; async execute() { logger.header('Size'); logger.info('Run: pm help size'); separator(); } }
-class AgeCommand { name = 'age'; description = 'Age'; async execute() { logger.header('Age'); logger.info('Run: pm help age'); separator(); } }
+class SizeCommand { name = 'size'; description = 'Size'; async execute() { logger.header('Size'); logger.info('Run: universal-pm help size'); separator(); } }
+class AgeCommand { name = 'age'; description = 'Age'; async execute() { logger.header('Age'); logger.info('Run: universal-pm help age'); separator(); } }
 class TreeCommand { name = 'tree'; description = 'Tree'; async execute() { execSync('npm list -g --depth=2',{stdio:'inherit'}); } }
 class DuplicatesCommand { name = 'duplicates'; description = 'Duplicates'; aliases=['dup']; async execute() { const p=getCachedPackages(), m=new Map(); p.forEach(x=>{if(!m.has(x.name))m.set(x.name,[]);m.get(x.name)!.push(x)}); logger.header('Duplicates'); let f=false; m.forEach((v,k)=>{if(v.length>1){f=true;logger.subheader(k);logger.table(['Version','Manager'],v.map(x=>[x.version,`[${x.manager}]`]))}}); if(!f)logger.success('None'); separator(); } }
-class CronCommand { name = 'cron'; description = 'Cron'; async execute() { logger.header('Auto-Check'); logger.info('Run: pm help cron'); separator(); } }
+class CronCommand { name = 'cron'; description = 'Cron'; async execute() { logger.header('Auto-Check'); logger.info('Run: universal-pm help cron'); separator(); } }
 class NotifyCommand { name = 'notify'; description = 'Notify'; async execute() { const p=getCachedPackages(), u=await pm.checkUpdates(p); u.length?logger.warn(`${u.length} updates`):logger.success('All up to date'); } }
 class InitCommand { name = 'init'; description = 'Init'; async execute() { writeFileSync(configFile,JSON.stringify({autoUpdate:false,defaultManager:'npm'},null,2)); logger.success('Config created'); } }
 class ConfigCommand { name = 'config'; description = 'Config'; async execute() { logger.header('Config'); if(existsSync(configFile)){const c=JSON.parse(readFileSync(configFile,'utf8'));Object.entries(c).forEach(([k,v])=>logger.kv(k,String(v)))}else logger.info('Run: pm init'); separator(); } }

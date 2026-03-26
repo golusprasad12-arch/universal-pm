@@ -732,9 +732,9 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
     if (mgr && ['npm','pnpm','bun'].includes(mgr)) pk = pk.filter(p => p.manager === mgr);
     pk.sort((a, b) => a.name.localeCompare(b.name));
     
-    if (pk.length === 0) { 
-      logger.empty('No packages found', 'Install a package with: pm install <name>'); 
-      return; 
+    if (pk.length === 0) {
+      logger.empty('No packages found', 'Install a package with: universal-pm install <name>');
+      return;
     }
     
     const counts = {
@@ -920,7 +920,7 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
 
   install: async (args) => {
     const target = args[0];
-    if (!target) { logger.errorHelp('Usage: pm install <package> or <github-url>'); return; }
+    if (!target) { logger.errorHelp('Usage: universal-pm install <package> or <github-url>'); return; }
     
     if (target.includes('github.com')) {
       logger.logo('install');
@@ -1748,18 +1748,18 @@ if (cmd === 'patch') { cmd = 'update'; cmdArgs.unshift('--patch'); }
 if (cmd === 'av') cmd = 'available';
 if (cmd === 'checkpkg') cmd = 'available';
 
-if (!commands[cmd] && cmd !== 'help') {
-  const suggestion = suggest(cmd);
-  if (suggestion) {
-    logger.suggest(cmd, suggestion);
-    console.log('');
-    logger.info('Run: pm help for all commands');
+    if (!commands[cmd] && cmd !== 'help') {
+      const suggestion = suggest(cmd);
+      if (suggestion) {
+        logger.suggest(cmd, suggestion);
+        console.log('');
+        logger.info('Run: universal-pm help for all commands');
+        process.exit(1);
+      }
+    logger.error(`Unknown command: ${cmd}`);
+    logger.info('Run: universal-pm help to see all available commands');
+    logger.tip('You can also search packages with: universal-pm search <name>');
     process.exit(1);
-  }
-  logger.error(`Unknown command: ${cmd}`);
-  logger.info('Run: pm help to see all available commands');
-  logger.tip('You can also search packages with: pm search <name>');
-  process.exit(1);
 }
 
 (commands[cmd] || commands.help)(cmdArgs);
