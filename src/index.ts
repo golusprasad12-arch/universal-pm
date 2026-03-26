@@ -181,7 +181,7 @@ const helpContent: Record<string, () => void> = {
     console.log(`  ${dim('pm check')}`);
     console.log('');
     console.log(`  ${white('Aliases')}`);
-    console.log(`  ${dim('pm update, pm upgrade, pm outdated')}`);
+    console.log(`  ${dim('universal-pm update, universal-pm upgrade, universal-pm outdated')}`);
     console.log('');
   },
   
@@ -642,13 +642,13 @@ const helpContent: Record<string, () => void> = {
     logger.header('COMMAND: update');
     console.log('\n  Update installed packages to latest versions.');
     console.log('\n  Usage:');
-    console.log(white('    pm update              ') + dim('- Check for updates'));
-    console.log(white('    pm update <package>    ') + dim('- Update specific package'));
-    console.log(white('    pm update --major      ') + dim('- Major version updates'));
-    console.log(white('    pm update --minor      ') + dim('- Minor version updates'));
-    console.log(white('    pm update --patch      ') + dim('- Patch version updates'));
-    console.log(white('    pm update --all        ') + dim('- Update all packages'));
-    console.log(white('    pm up <package>        ') + dim('- Short form'));
+    console.log(white('    universal-pm update              ') + dim('- Check for updates'));
+    console.log(white('    universal-pm update <package>    ') + dim('- Update specific package'));
+    console.log(white('    universal-pm update --major      ') + dim('- Major version updates'));
+    console.log(white('    universal-pm update --minor      ') + dim('- Minor version updates'));
+    console.log(white('    universal-pm update --patch      ') + dim('- Patch version updates'));
+    console.log(white('    universal-pm update --all        ') + dim('- Update all packages'));
+    console.log(white('    universal-pm up <package>        ') + dim('- Short form'));
     sep();
   },
 
@@ -799,8 +799,8 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
     );
     
     console.log('');
-    logger.tip('To update all packages, run: pm update --all');
-    logger.tip('To update a specific package, run: pm update <package>');
+    logger.tip('To update all packages, run: universal-pm update --all');
+    logger.tip('To update a specific package, run: universal-pm update <package>');
     sep();
   },
 

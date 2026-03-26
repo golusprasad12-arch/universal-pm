@@ -1,6 +1,6 @@
 {
   "name": "universal-pm",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Professional Package Manager CLI for npm, pnpm, and bun - Unified CLI for all package managers",
   "type": "module",
   "bin": {

@@ -58,7 +58,7 @@ class HelpCommand {
             'check',
             'Check for available updates for all installed packages. Shows current version vs latest version.',
             'pm check',
-            ['pm check             - Check all packages', 'pm update            - Same as check'],
+            ['universal-pm check             - Check all packages', 'universal-pm update            - Same as check'],
             ['update', 'upgrade', 'up', 'outdated']
           );
         },
