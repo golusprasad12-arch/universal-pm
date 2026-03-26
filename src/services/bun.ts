@@ -36,7 +36,7 @@ export class BunService implements Manager {
 
   view(name: string, field: string): string {
     try {
-      return execSync(`bun pm view ${name} ${field}`, { encoding: 'utf8' }).trim();
+      return execSync(`bun pm view ${name} ${field}`, { encoding: 'utf8', timeout: 5000 }).trim();
     } catch {
       return '';
     }

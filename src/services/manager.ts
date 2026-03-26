@@ -27,21 +27,15 @@ export class PackageManager {
   }
 
   uninstall(name: string): void {
-    const pkg = this.listAllSync().find(p => p.name === name);
+    const packages = this.listAll();
+    const pkg = packages.find(p => p.name === name);
+    
     if (pkg) {
-      this.services[pkg.manager].uninstall(name);
+      this.services[pkg.manager as ManagerType].uninstall(name);
     } else {
       console.error(`Package '${name}' not found. Trying npm uninstall anyway...`);
       npm.uninstall(name);
     }
-  }
-
-  private listAllSync(): Package[] {
-    return [
-      ...npm.listGlobal(),
-      ...pnpm.listGlobal(),
-      ...bun.listGlobal()
-    ];
   }
 
   getLatestVersion(name: string): string {
@@ -49,30 +43,38 @@ export class PackageManager {
   }
 
   async checkUpdates(packages: Package[], onProgress?: (current: number, total: number, name: string) => void): Promise<Update[]> {
-    const total = packages.length;
-    let current = 0;
-    
-    const CONCURRENCY = 5;
+    if (packages.length === 0) return [];
+
+    const CONCURRENCY = Math.min(10, packages.length);
     const updates: Update[] = [];
     const queue = [...packages];
-    
+    const total = packages.length;
+    let current = 0;
+    let lastProgress = 0;
+
     const worker = async () => {
       while (queue.length > 0) {
         const pkg = queue.shift();
         if (!pkg) break;
-        
+
         try {
           const latest = npm.getLatestVersion(pkg.name);
           if (latest && latest !== pkg.version) {
             updates.push({ ...pkg, latest });
           }
         } catch {}
-        
+
         current++;
-        if (onProgress) onProgress(current, total, pkg.name);
+        
+        // Rate limit progress updates to avoid excessive rendering
+        const progressPercent = Math.round((current / total) * 100);
+        if (onProgress && progressPercent - lastProgress >= 5) {
+          lastProgress = progressPercent;
+          onProgress(current, total, pkg.name);
+        }
       }
     };
-    
+
     await Promise.all(Array(CONCURRENCY).fill(null).map(worker));
     return updates;
   }

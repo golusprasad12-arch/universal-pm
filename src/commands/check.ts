@@ -10,6 +10,12 @@ export class CheckCommand extends BaseCommand {
 
   async execute(args: string[]): Promise<void> {
     const packages = pm.listAll();
+    
+    if (packages.length === 0) {
+      logger.info('No packages found');
+      return;
+    }
+    
     logger.header(`Checking ${packages.length} packages...`);
     
     const updates = await pm.checkUpdates(packages);

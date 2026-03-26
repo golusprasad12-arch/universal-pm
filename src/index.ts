@@ -27,12 +27,12 @@ const backupFile = 'packages-backup.json';
 
 let cache: Package[] = [];
 let cacheTime = 0;
-const TTL = 30000;
+const TTL = 60000; // 1 minute cache
 
 async function pkgs(force = false): Promise<Package[]> {
   const now = Date.now();
   if (!force && cache.length > 0 && now - cacheTime < TTL) return cache;
-  cache = await pm.listAll();
+  cache = pm.listAll();
   cacheTime = now;
   return cache;
 }

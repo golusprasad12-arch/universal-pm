@@ -34,21 +34,52 @@ export class NpmService implements Manager {
     execSync(`npm uninstall -g ${name}`, { stdio: 'inherit' });
   }
 
+  private versionCache = new Map<string, { version: string; timestamp: number }>();
+  private readonly CACHE_TTL = 300000; // 5 minutes
+
   view(name: string, field: string): string {
     try {
-      return execSync(`npm view ${name} ${field}`, { encoding: 'utf8' }).trim();
+      return execSync(`npm view ${name} ${field}`, { encoding: 'utf8', timeout: 5000 }).trim();
     } catch {
       return '';
     }
   }
 
   getLatestVersion(name: string): string {
-    return this.view(name, 'version');
+    const cached = this.versionCache.get(name);
+    const now = Date.now();
+    
+    if (cached && now - cached.timestamp < this.CACHE_TTL) {
+      return cached.version;
+    }
+
+    try {
+      const version = execSync(`npm view ${name} version`, { 
+        encoding: 'utf8',
+        timeout: 5000,
+        maxBuffer: 1024 * 1024
+      }).trim();
+      
+      if (version) {
+        this.versionCache.set(name, { version, timestamp: now });
+        
+        // Cleanup old cache entries
+        if (this.versionCache.size > 100) {
+          const expired = Array.from(this.versionCache.entries())
+            .filter(([_, data]) => now - data.timestamp > this.CACHE_TTL);
+          expired.forEach(([key]) => this.versionCache.delete(key));
+        }
+      }
+      
+      return version;
+    } catch {
+      return '';
+    }
   }
 
   search(query: string, limit = 10): { name: string; description: string }[] {
     try {
-      const output = execSync(`npm search ${query} --json`, { encoding: 'utf8' });
+      const output = execSync(`npm search ${query} --json`, { encoding: 'utf8', timeout: 10000 });
       return JSON.parse(output).slice(0, limit).map((r: any) => ({
         name: r.name,
         description: r.description
@@ -61,12 +92,12 @@ export class NpmService implements Manager {
   getPackageInfo(name: string): Partial<Package> & Record<string, string> {
     const fields = ['description', 'version', 'license', 'homepage', 'repository', 'keywords', 'maintainers', 'deprecated'];
     const info: Record<string, string> = {};
-    
+
     for (const field of fields) {
       const value = this.view(name, field);
       if (value) info[field] = value;
     }
-    
+
     return info as any;
   }
 }

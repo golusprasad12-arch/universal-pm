@@ -36,7 +36,7 @@ export class PnpmService implements Manager {
 
   view(name: string, field: string): string {
     try {
-      return execSync(`pnpm view ${name} ${field}`, { encoding: 'utf8' }).trim();
+      return execSync(`pnpm view ${name} ${field}`, { encoding: 'utf8', timeout: 5000 }).trim();
     } catch {
       return '';
     }
