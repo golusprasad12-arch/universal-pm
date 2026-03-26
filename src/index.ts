@@ -1584,21 +1584,46 @@ const commands: Record<string, (args: string[]) => void | Promise<void>> = {
       logger.kv('Patch Updates', String(ups.length));
       logger.table(['Package','Current','Latest'], ups.map((x: any)=>[x.name, x.version, x.latest]));
       sep();
-    } else if (flag === '--all') {
-      await commands.check([]);
-    } else if (flag) {
-      logger.logo('install');
-      logger.info('Updating: ' + flag);
-      try {
-        execSync(`npm install -g ${flag}`, {stdio:'inherit'});
-        logger.success('Updated: ' + flag);
-        clear();
-      } catch {
-        logger.error('Failed to update: ' + flag);
-      }
-    } else {
-      await commands.check([]);
+  } else if (flag === '--all') {
+    logger.logo('update');
+    logger.info('Checking for updates...');
+    const pk = await pkgs(true);
+    const ups = await pm.checkUpdates(pk);
+    
+    if (ups.length === 0) {
+      logger.success('All packages are up to date!');
+      sep();
+      return;
     }
+    
+    logger.warn(`Updating ${ups.length} packages...`);
+    
+    for (const pkg of ups) {
+      try {
+        logger.status('running', `Updating ${pkg.name}...`);
+        execSync(`npm install -g ${pkg.name}@${pkg.latest}`, { stdio: 'pipe' });
+        logger.success(`Updated ${pkg.name} to ${pkg.latest}`);
+      } catch (err) {
+        logger.error(`Failed to update ${pkg.name}`);
+      }
+    }
+    
+    clear();
+    logger.success('Update complete!');
+    sep();
+  } else if (flag) {
+    logger.logo('install');
+    logger.info('Updating: ' + flag);
+    try {
+      execSync(`npm install -g ${flag}`, {stdio:'inherit'});
+      logger.success('Updated: ' + flag);
+      clear();
+    } catch {
+      logger.error('Failed to update: ' + flag);
+    }
+  } else {
+    await commands.check([]);
+  }
   },
 
    duplicates: async () => {
