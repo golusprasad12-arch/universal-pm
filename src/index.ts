@@ -47,7 +47,7 @@ const helpContent: Record<string, () => void> = {
   '': () => {
     logger.banner();
     
-    console.log(`  ${chalk.white.bold('Usage:')} ${chalk.cyan('pm <command> [options]')}`);
+    console.log(`  ${chalk.white.bold('Usage:')} ${chalk.cyan('universal-pm <command> [options]')}`);
     console.log(`  ${chalk.gray('Unified Package Manager for npm, pnpm, and bun')}`);
     console.log('');
 
@@ -133,15 +133,15 @@ const helpContent: Record<string, () => void> = {
     
     console.log('');
     console.log(`  ${chalk.green.bold('» Examples')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm list')}                       ${chalk.gray('Show all packages')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm check')}                      ${chalk.gray('Check for updates')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm install typescript')}          ${chalk.gray('Install package')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm available react')}            ${chalk.gray('Check npm/pnpm/bun')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm github typescript cli')}       ${chalk.gray('Search GitHub')}`);
-    console.log(`  ${chalk.gray('$')} ${chalk.white('pm info react')}                  ${chalk.gray('View package details')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm list')}                       ${chalk.gray('Show all packages')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm check')}                      ${chalk.gray('Check for updates')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm install typescript')}          ${chalk.gray('Install package')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm available react')}            ${chalk.gray('Check npm/pnpm/bun')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm github typescript cli')}       ${chalk.gray('Search GitHub')}`);
+    console.log(`  ${chalk.gray('$')} ${chalk.white('universal-pm info react')}                  ${chalk.gray('View package details')}`);
     
     console.log('');
-    console.log(`  ${chalk.gray('Use')} ${chalk.cyan('pm help <command>')} ${chalk.gray('for detailed information.')}`);
+    console.log(`  ${chalk.gray('Use')} ${chalk.cyan('universal-pm help <command>')} ${chalk.gray('for detailed information.')}`);
     console.log('');
   },
   
@@ -1753,11 +1753,11 @@ if (!commands[cmd] && cmd !== 'help') {
   if (suggestion) {
     logger.suggest(cmd, suggestion);
     console.log('');
-    logger.info('Run: pm help for all commands');
+    logger.info('Run: universal-pm help for all commands');
     process.exit(1);
   }
   logger.error(`Unknown command: ${cmd}`);
-  logger.info('Run: pm help to see all available commands');
+  logger.info('Run: universal-pm help to see all available commands');
   logger.tip('You can also search packages with: pm search <name>');
   process.exit(1);
 }
