@@ -63,7 +63,7 @@ bun run build
 After building, use:
 ```bash
 ./pm.exe --help    # Windows
-./pm --help        # Linux/Mac (after building)
+universal-pm --help # After npm install
 ```
 
 ---
@@ -73,42 +73,42 @@ After building, use:
 ### Basic Commands
 
 ```bash
-pm list              # List all installed packages
-pm check             # Check for updates
-pm install <pkg>     # Install a package
-pm uninstall <pkg>   # Remove a package
-pm update            # Update all packages
+universal-pm list              # List all installed packages
+universal-pm check             # Check for updates
+universal-pm install <pkg>     # Install a package
+universal-pm uninstall <pkg>   # Remove a package
+universal-pm update            # Update all packages
 ```
 
 ### Search & Info
 
 ```bash
-pm search <query>           # Search npm registry
-pm info <pkg>              # Get package details
-pm github <query>          # Search GitHub repos
-pm available <pkg>         # Check if package exists in npm/pnpm/bun
-pm compare <pkg1> <pkg2>   # Compare two packages
+universal-pm search <query>           # Search npm registry
+universal-pm info <pkg>              # Get package details
+universal-pm github <query>          # Search GitHub repos
+universal-pm available <pkg>         # Check if package exists in npm/pnpm/bun
+universal-pm compare <pkg1> <pkg2>   # Compare two packages
 ```
 
 ### Package Management
 
 ```bash
-pm outdated            # Show outdated packages
-pm major              # Update major versions only
-pm downgrade <pkg>@v   # Install specific version
-pm clean              # Clean cache
-pm audit              # Security audit
+universal-pm outdated            # Show outdated packages
+universal-pm major              # Update major versions only
+universal-pm downgrade <pkg>@v   # Install specific version
+universal-pm clean              # Clean cache
+universal-pm audit              # Security audit
 ```
 
 ### Utilities
 
 ```bash
-pm stats              # Package statistics
-pm which <pkg>       # Find package location
-pm size              # Disk usage
-pm backup            # Backup package list
-pm doctor            # System health check
-pm help              # Show all commands
+universal-pm stats              # Package statistics
+universal-pm which <pkg>       # Find package location
+universal-pm size              # Disk usage
+universal-pm backup            # Backup package list
+universal-pm doctor            # System health check
+universal-pm help              # Show all commands
 ```
 
 ---
